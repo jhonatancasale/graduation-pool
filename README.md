@@ -2,6 +2,7 @@
 It's time for the truth, I'm a dropout of Information Systems of USP (ICMC), currently working as Full Stack Web Developer and one of the Statistics course students of the same University.
 
 And basically, the core idea behind this repository is:
+
 1. Something I can later take a look and keep me engaged in the long run.
 2. Keep the inital momentum.
 3. Serve as study material.
