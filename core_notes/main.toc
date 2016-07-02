@@ -1,0 +1,8 @@
+\select@language {brazil}
+\contentsline {chapter}{Direcionamento Acad\IeC {\^e}mico I}{15}{chapter*.5}
+\contentsline {chapter}{Laborat\IeC {\'o}rio de Introdu\IeC {\c c}\IeC {\~a}o \IeC {\`a} Ciencia da Computa\IeC {\c c}\IeC {\~a}o}{17}{chapter*.6}
+\contentsline {chapter}{Introdu\IeC {\c c}\IeC {\~a}o \IeC {\`a} Ci\IeC {\^e}ncia da Computa\IeC {\c c}\IeC {\~a}o}{19}{chapter*.7}
+\contentsline {chapter}{\IeC {\'A}lgebra Linear}{21}{chapter*.8}
+\contentsline {chapter}{Probabilidade I}{23}{chapter*.9}
+\contentsline {chapter}{\'Indice Remissivo}{27}{chapter*.10}
+\contentsfinish 
