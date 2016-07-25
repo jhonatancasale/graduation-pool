@@ -1,17 +1,17 @@
 all: 
-	@pdflatex -shell-escape main.tex
-	@makeindex main.idx
+	@pdflatex -shell-escape core_notes.tex
+	@makeindex core_notes.idx
 
 clean:
-	rm -f	main.aux
-	rm -f	main.bbl
-	rm -f	main.idx
-	rm -f	main.ilg
-	rm -f	main.ind
-	rm -f	main.lof
-	rm -f	main.log
-	rm -f	main.lot
-	rm -f	main.out
-	rm -f	main.pdf
-	rm -f	main.toc
-
+	@rm -f	core_notes.aux
+	@rm -f	core_notes.bbl
+	@rm -f	core_notes.idx
+	@rm -f	core_notes.ilg
+	@rm -f	core_notes.ind
+	@rm -f	core_notes.lof
+	@rm -f	core_notes.log
+	@rm -f	core_notes.lot
+	@rm -f	core_notes.out
+	@rm -f	core_notes.pdf
+	@rm -f	core_notes.toc
+	@echo "Cleaned"
