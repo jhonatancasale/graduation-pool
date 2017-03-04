@@ -27,6 +27,18 @@ que é o Sistema que a USP usa para gerenciar os alunos de graduação.
 |  X      | [SME0890](https://uspdigital.usp.br/jupiterweb/obterDisciplina?sgldis=SME0890&codcur=55070&codhab=4) | Direcionamento Acadêmico I |
 
 
+### 2° Período Ideal
+| Status  | Sigla   | Nome |
+| :-----: | :-----: | :--- |
+|         | [SMA0802](https://uspdigital.usp.br/jupiterweb/obterDisciplina?sgldis=SMA0802&codcur=55070&codhab=4) Cálculo II |
+|         | [SMA0804](https://uspdigital.usp.br/jupiterweb/obterDisciplina?sgldis=SMA0804&codcur=55070&codhab=4) Álgebra Linear |
+|  X      | [SME0800](https://uspdigital.usp.br/jupiterweb/obterDisciplina?sgldis=SME0800&codcur=55070&codhab=4) Probabilidade |
+|         | [SME0891](https://uspdigital.usp.br/jupiterweb/obterDisciplina?sgldis=SME0891&codcur=55070&codhab=4) Direcionamento Acadêmico II |
+|  X      | [SSC8000](https://uspdigital.usp.br/jupiterweb/obterDisciplina?sgldis=SSC0800&codcur=55070&codhab=4) Introdução à Ciência de Computação |
+|  X      | [SSC0801](https://uspdigital.usp.br/jupiterweb/obterDisciplina?sgldis=SSC0801&codcur=55070&codhab=4) Laboratório de Introdução à Ciência de Computação I |
+
+
+
 :wq
 
 ------------------------------------------------------------------------------
