@@ -38,6 +38,13 @@ que é o Sistema que a USP usa para gerenciar os alunos de graduação.
 |  X      | [SSC0801](https://uspdigital.usp.br/jupiterweb/obterDisciplina?sgldis=SSC0801&codcur=55070&codhab=4) | Laboratório de Introdução à Ciência de Computação I |
 
 
+### 3° Período Ideal
+| Status  | Sigla   | Nome |
+| :-----: | :-----: | :--- |
+|         | [SMA0803](https://uspdigital.usp.br/jupiterweb/obterDisciplina?sgldis=SMA0803&codcur=55070&codhab=4) | Cálculo III |
+|         | [SME0801](https://uspdigital.usp.br/jupiterweb/obterDisciplina?sgldis=SME0801&codcur=55070&codhab=4) | Probabilidade II |
+|         | [SME0818](https://uspdigital.usp.br/jupiterweb/obterDisciplina?sgldis=SME0818&codcur=55070&codhab=4) | Inferência Estatística |
+|         | [SME0819](https://uspdigital.usp.br/jupiterweb/obterDisciplina?sgldis=SME0819&codcur=55070&codhab=4) | Matrizes Aplicadas à Estatística |
 
 :wq
 
