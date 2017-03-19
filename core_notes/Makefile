@@ -4,6 +4,7 @@ all:
 
 clean:
 	@rm -f	core_notes.aux
+	@rm -f	*.aux
 	@rm -f	core_notes.bbl
 	@rm -f	core_notes.idx
 	@rm -f	core_notes.ilg
