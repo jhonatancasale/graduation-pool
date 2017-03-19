@@ -1,18 +1,19 @@
 all: 
-	@pdflatex -shell-escape core_notes.tex
+	@pdflatex -halt-on-error -shell-escape core_notes.tex
 	@makeindex core_notes.idx
 
 clean:
-	@rm -f	core_notes.aux
-	@rm -f	*.aux
-	@rm -f	core_notes.bbl
-	@rm -f	core_notes.idx
-	@rm -f	core_notes.ilg
-	@rm -f	core_notes.ind
-	@rm -f	core_notes.lof
-	@rm -f	core_notes.log
-	@rm -f	core_notes.lot
-	@rm -f	core_notes.out
-	@rm -f	core_notes.pdf
-	@rm -f	core_notes.toc
+	@find -name ".*~" -delete 2>/dev/null
+	@find -name "*~" -delete 2>/dev/null
+	@find -name "*.aux" -delete 2>/dev/null
+	@find -name "*.bbl" -delete 2>/dev/null
+	@find -name "*.idx" -delete 2>/dev/null
+	@find -name "*.ilg" -delete 2>/dev/null
+	@find -name "*.ind" -delete 2>/dev/null
+	@find -name "*.lof" -delete 2>/dev/null
+	@find -name "*.log" -delete 2>/dev/null
+	@find -name "*.lot" -delete 2>/dev/null
+	@find -name "*.out" -delete 2>/dev/null
+	@find -name "*.pdf" -delete 2>/dev/null
+	@find -name "*.toc" -delete 2>/dev/null
 	@echo "Cleaned"
