@@ -29,3 +29,6 @@
 
 # Scripts
 *.sh
+
+# Jupyter Notebooks tmp files
+.ipynb_checkpoints
