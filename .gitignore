@@ -32,3 +32,6 @@
 
 # Jupyter Notebooks tmp files
 .ipynb_checkpoints
+
+# Vim tmp files
+*~
