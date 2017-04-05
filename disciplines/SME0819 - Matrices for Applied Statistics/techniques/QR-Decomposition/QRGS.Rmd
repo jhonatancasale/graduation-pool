@@ -1,4 +1,7 @@
-# QR Decomposition with Gram-Schmidt
+---
+title: "QR Decomposition with Gram-Schmidt"
+output: html_notebook
+---
 
 ## Implementação
 
