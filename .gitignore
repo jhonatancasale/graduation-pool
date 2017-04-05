@@ -35,3 +35,6 @@
 
 # Vim tmp files
 *~
+
+# R/RStudio tmp files
+.Rhistory
