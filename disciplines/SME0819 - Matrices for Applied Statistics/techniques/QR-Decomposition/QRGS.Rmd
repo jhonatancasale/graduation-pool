@@ -1,0 +1,155 @@
+# QR Decomposition with Gram-Schmidt
+
+## Implementação
+
+Implementando a decomposição (fatoração) QR com o método de Gram-Schmidt
+```{r}
+QR.Gram_Schmidt <- function(m, n, A) {
+  if (n > m) {
+    Q = matrix(rep(0), nrow=m, ncol=m)
+    R = matrix(rep(0), nrow=m, ncol=n)
+    for (k in 1:m) {
+      R[k, k] <- svd(A[, k])$d
+      Q[, k] <- A[, k]/ R[k, k]
+      j = k + 1
+      while(j <= m ) {
+        R[k, j] <- t(Q[, k]) %*% A[, j]
+        A[, j] <- A[, j] - Q[, k] * R[k, j]
+        j = j + 1
+      }
+    }
+    R[, (m+1):n] <- t(Q) %*% A[, (m+1):n]
+  } else {
+    Q <- diag(m)
+    R = matrix(rep(0), nrow=m, ncol=m)
+    for (k in 1:n) {
+      R[k, k] <- svd(A[, k])$d
+      Q[, k] <- A[, k]/ R[k, k]
+      j = k+1
+      while (j <= n ) {
+        R[k, j] <- t(Q[, k]) %*% A[, j]
+        A[, j] <- A[, j] - Q[, k] * R[k, j]
+        j = j + 1
+      }
+    }
+    if ( m != n ) {
+      R[(n+1):m, 1:n] <- matrix(rep(0), nrow=(m-n), ncol=n)
+    }
+  }
+  
+  decomposition <- list()
+  decomposition$Q <- Q
+  decomposition$R <- R
+  
+  return (decomposition)
+}
+```
+
+## Testando para um caso 3x3
+Comparando a saída da função `QR.Gram_Schmidt` para a matriz
+
+```{r}
+A = matrix(c(8, 3, 4, 1, 5, 9, 6, 7, 2), nrow=3, ncol=3, byrow=FALSE)
+print(A)
+```
+
+### Saída esperada das matrizes Q e R
+```{rmd}
+Q =
+
+   0.847998  -0.522292  -0.090055
+   0.317999   0.365468   0.874820
+   0.423999   0.770483  -0.476005
+
+R =
+
+   9.43398   6.25399   8.16198
+   0.00000   8.23940   0.96549
+   0.00000   0.00000   4.63140
+```
+
+### Criando a matriz A com os valores de interesse e rodando a função QR.Gram_Schmidt
+```{r}
+QR.Gram_Schmidt(3, 3, A)
+```
+
+### Comparando com a implementação nativa do R
+```{r}
+qr.Q(qr(A))
+qr.R(qr(A))
+```
+
+
+## Testando para o caseo 3x4
+Adicionando a coluna [1 2 3]
+```{r}
+A = matrix(c(8, 3, 4, 1, 5, 9, 6, 7, 2, 1, 2, 3), nrow=3, ncol=4, byrow=FALSE)
+print(A)
+```
+
+### Saída esperada das matrizes Q e R
+```{rmd}
+Q =
+
+   0.847998  -0.522292  -0.090055
+   0.317999   0.365468   0.874820
+   0.423999   0.770483  -0.476005
+
+R =
+
+   9.43398   6.25399   8.16198   2.75599
+   0.00000   8.23940   0.96549   2.52009
+   0.00000   0.00000   4.63140   0.23157
+```
+
+### Rodando novamente a função QR.Gram_Schmidt
+```{r}
+QR.Gram_Schmidt(3, 4, A)
+```
+
+### Comparando com a implementação nativa do R
+```{r}
+qr.Q(qr(A))
+qr.R(qr(A))
+```
+
+
+## E por último testando para o caso `6x6`
+```{r}
+A = matrix(c(35, 1, 6, 26, 19, 24, 3, 32, 7, 21, 23, 25,
+             31, 9, 2, 22, 27, 20, 8, 28, 33, 17, 10, 15,
+             30, 5, 34, 12, 14, 16, 4, 36, 29, 13, 18, 11),
+           nrow=6, ncol=6, byrow=TRUE)
+print(A)
+```
+
+### Saída esperada das matrizes Q e R
+```{rmd}
+Q =
+   0.6211496  -0.1702323  -0.2069923   0.4998127  -0.2062416   0.5478847
+   0.0532414   0.5740207  -0.4500167   0.2106392   0.6486769  -0.3371598
+   0.5501610  -0.0011211  -0.4460032  -0.4537259  -0.2062416  -0.0842900
+   0.1419770   0.4732929   0.3762869   0.5034130  -0.3328962   0.0421450
+   0.5324139  -0.0695045   0.6287160  -0.2095554   0.5220223   0.7586096
+   0.0709885   0.6424040   0.1372761  -0.4501256  -0.3328962   0.0421450
+
+R =
+
+   56.34714   16.46934   30.04589   39.09693   38.03210   38.67100
+    0.00000   54.21956   34.87974   23.16691   25.26093   23.29628
+    0.00000    0.00000   32.49074   -8.91816  -11.28946   -7.92450
+    0.00000    0.00000    0.00000    7.62831   -3.91136    7.43390
+    0.00000    0.00000    0.00000    0.00000    3.41967    6.83935
+    0.00000    0.00000    0.00000    0.00000    0.00000    0.00000
+```
+
+### Resultado da função QR.Gram_Schmidt
+```{r}
+QR.Gram_Schmidt(6, 6, A)
+```
+
+### Comparando com a implementação nativa do R
+```{r}
+qr.Q(qr(A))
+qr.R(qr(A))
+```
