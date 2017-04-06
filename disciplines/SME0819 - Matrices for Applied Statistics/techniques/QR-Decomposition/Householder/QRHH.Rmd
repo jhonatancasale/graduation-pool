@@ -1,0 +1,138 @@
+---
+title: "QR Decomposition with Householder reflections"
+output:
+  html_document: default
+  html_notebook: default
+---
+
+## Implementação
+
+Implementando a decomposição (fatoração) QR com o método de Gram-Schmidt
+```{r}
+QR.Householder <- function(A) {
+  m <- dim(A)[1]
+  n <- dim(A)[2]
+  
+  Q <- diag(m)
+  R <- A
+  for (k in 1:min(m-1, n)) {
+    x <- as.vector(R[k:m, k])
+    v <- as.vector(x + sign(x[1]) * svd(x)$d * c(1, rep(0, m-k)))
+    H <- diag(m-k+1) - 2 * v %*% t(v) / as.numeric((t(v) %*% v))
+    P <- rbind (
+      cbind(diag(k-1), matrix(rep(0), nrow = k - 1, ncol = m - k + 1)),
+      cbind(matrix(rep(0), nrow = m - k + 1, ncol = k - 1), H)
+    )
+    R <- P %*% R
+    Q <- Q %*% P
+  }
+
+  decomposition <- list()
+  decomposition$Q <- Q
+  decomposition$R <- R
+  
+  return (decomposition)
+}
+```
+
+## Testando para um caso 3x3
+
+### Criando a matriz A com os valores de interesse
+
+```{r}
+A = matrix(c(8, 3, 4, 1, 5, 9, 6, 7, 2), nrow=3, ncol=3, byrow=FALSE)
+print(A)
+```
+
+### Saída esperada das matrizes Q e R
+```{rmd}
+Q =
+
+  -0.847998   0.522292   0.090055
+  -0.317999  -0.365468  -0.874820
+  -0.423999  -0.770483   0.476005
+
+R =
+
+  -9.43398  -6.25399  -8.16198
+   0.00000  -8.23940  -0.96549
+   0.00000   0.00000  -4.63140
+```
+
+
+### Executando a função QR.Householder
+```{r}
+result <- QR.Householder(A)
+print(result)
+```
+
+### Resultado da implementação nativa do R
+```{r}
+qr.Q(qr(A))
+qr.R(qr(A))
+```
+
+Como medida de eficiência relativa da implementação aqui realizada em  comparação com a implementação do próprio R, usarei a soma das diferenças ao quadrado das matrizes resultantes Q e R, no caso da matriz Q temos a diferença:
+
+```{r}
+sum((result$Q - qr.Q(qr(A))) ^ 2)
+```
+
+E no caso da matriz R
+```{r}
+sum((result$R - qr.R(qr(A))) ^ 2)
+```
+
+## Testando para o caso `6x6`
+```{r}
+A = matrix(c(35, 1, 6, 26, 19, 24, 3, 32, 7, 21, 23, 25,
+             31, 9, 2, 22, 27, 20, 8, 28, 33, 17, 10, 15,
+             30, 5, 34, 12, 14, 16, 4, 36, 29, 13, 18, 11),
+           nrow=6, ncol=6, byrow=TRUE)
+print(A)
+```
+
+### Saída esperada das matrizes Q e R
+```{rmd}
+Q =
+
+  -6.2115e-01   1.7023e-01  -2.0699e-01  -4.9981e-01   2.0624e-01  -5.0000e-01
+  -5.3241e-02  -5.7402e-01  -4.5002e-01  -2.1064e-01  -6.4868e-01   4.1633e-16
+  -5.5016e-01   1.1211e-03  -4.4600e-01   4.5373e-01   2.0624e-01   5.0000e-01
+  -1.4198e-01  -4.7329e-01   3.7629e-01  -5.0341e-01   3.3290e-01   5.0000e-01
+  -5.3241e-01   6.9505e-02   6.2872e-01   2.0956e-01  -5.2202e-01   3.4694e-16
+  -7.0989e-02  -6.4240e-01   1.3728e-01   4.5013e-01   3.3290e-01  -5.0000e-01
+
+R =
+
+  -5.6347e+01  -1.6469e+01  -3.0046e+01  -3.9097e+01  -3.8032e+01  -3.8671e+01
+   1.1430e-15  -5.4220e+01  -3.4880e+01  -2.3167e+01  -2.5261e+01  -2.3296e+01
+  -1.0496e-15  -8.6554e-16   3.2491e+01  -8.9182e+00  -1.1289e+01  -7.9245e+00
+  -3.1403e-15   6.6053e-16  -4.2110e-15  -7.6283e+00   3.9114e+00  -7.4339e+00
+   1.5657e-15  -9.6989e-16   2.4384e-16  -1.5314e-15  -3.4197e+00  -6.8393e+00
+  -2.9856e-15  -1.0221e-15  -3.2034e-15  -1.6079e-15  -2.2204e-16   1.9984e-15
+
+```
+
+### Resultado da função QR.Householder
+```{r}
+result <- QR.Householder(A)
+print(result)
+```
+
+### Resultado da implementação nativa do R
+```{r}
+qr.Q(qr(A))
+qr.R(qr(A))
+```
+
+Novamente usarei a soma das diferenças ao quadrado das matrizes resultantes Q e R, no caso da matriz Q temos a diferença:
+
+```{r}
+sum((result$Q - qr.Q(qr(A))) ^ 2)
+```
+
+E no caso da matriz R
+```{r}
+sum((result$R - qr.R(qr(A))) ^ 2)
+```
