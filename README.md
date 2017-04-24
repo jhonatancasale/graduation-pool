@@ -1,4 +1,4 @@
-tl;dg
+tl;dr
 - [pt](#recursos-da-graduação)
 - [en](#graduation-pool)
 
